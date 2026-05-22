@@ -1,0 +1,1184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Sundarapandiyan K — RF & SIGINT Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+/* ══════════════════════════════════════════
+   ROOT & RESET
+══════════════════════════════════════════ */
+:root {
+  --cream:   #f8f5ef;
+  --parchment: #f0ebe0;
+  --warm:    #e8e0d0;
+  --gold:    #b8966e;
+  --gold-lt: #d4b896;
+  --gold-dk: #8a6a44;
+  --ink:     #1e1a14;
+  --ink2:    #3a342a;
+  --charcoal:#5a5248;
+  --stone:   #8a8278;
+  --border:  #ddd5c4;
+  --border2: #ccc3b0;
+  --white:   #fdfcf9;
+  --shadow:  0 2px 12px rgba(30,26,20,0.08), 0 1px 3px rgba(30,26,20,0.04);
+  --shadow2: 0 8px 32px rgba(30,26,20,0.12), 0 2px 8px rgba(30,26,20,0.06);
+  --head: 'Cormorant Garamond', Georgia, serif;
+  --body: 'Jost', 'Gill Sans', sans-serif;
+  --r: 4px;
+  --r2: 8px;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; }
+body {
+  background: var(--cream);
+  color: var(--ink);
+  font-family: var(--body);
+  font-weight: 300;
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+
+/* ══════════════════════════════════════════
+   PAGES
+══════════════════════════════════════════ */
+.page { display: none; min-height: 100vh; }
+.page.active { display: block; }
+
+/* ══════════════════════════════════════════
+   NAV
+══════════════════════════════════════════ */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+  height: 58px;
+  background: rgba(248,245,239,0.96);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border);
+}
+.nav-wrap {
+  max-width: 1100px; margin: 0 auto;
+  height: 100%;
+  display: flex; align-items: center; justify-content: center;
+  padding: 0 2rem;
+  gap: 3rem;
+}
+.nav-links {
+  display: flex; gap: 2.5rem; list-style: none; align-items: center;
+}
+.nav-links a {
+  font-size: 11px; font-weight: 500;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--charcoal); text-decoration: none;
+  transition: color 0.2s;
+  cursor: pointer; padding: 4px 0;
+  position: relative;
+}
+.nav-links a::after {
+  content: '';
+  position: absolute; bottom: -2px; left: 0; right: 100%;
+  height: 1px; background: var(--gold);
+  transition: right 0.25s ease;
+}
+.nav-links a:hover { color: var(--ink); }
+.nav-links a:hover::after { right: 0; }
+
+/* ══════════════════════════════════════════
+   LAYOUT
+══════════════════════════════════════════ */
+.main { padding-top: 58px; }
+.wrap {
+  max-width: 1060px; margin: 0 auto;
+  padding-left: clamp(1.25rem, 5vw, 3rem);
+  padding-right: clamp(1.25rem, 5vw, 3rem);
+}
+section { padding: clamp(3.5rem, 7vw, 6rem) 0; }
+.section-rule {
+  width: 100%; height: 1px; background: var(--border);
+  border: none; max-width: 1060px; margin: 0 auto;
+}
+
+/* ══════════════════════════════════════════
+   SECTION LABELS
+══════════════════════════════════════════ */
+.eyebrow {
+  font-family: var(--body); font-size: 10px; font-weight: 500;
+  letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 0.75rem;
+  display: flex; align-items: center; gap: 10px;
+}
+.eyebrow::before { content: ''; width: 24px; height: 1px; background: var(--gold); }
+.section-title {
+  font-family: var(--head); font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 400; letter-spacing: -0.02em;
+  color: var(--ink); line-height: 1.1;
+  margin-bottom: 2.5rem;
+}
+.section-title em { font-style: italic; color: var(--gold-dk); }
+
+/* ══════════════════════════════════════════
+   HERO
+══════════════════════════════════════════ */
+#hero {
+  min-height: calc(100vh - 58px);
+  display: flex; align-items: center;
+}
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1fr min(320px, 38%);
+  gap: clamp(2rem, 5vw, 5rem);
+  align-items: center;
+}
+.hero-eyebrow {
+  font-size: 10px; font-weight: 500; letter-spacing: 0.22em;
+  text-transform: uppercase; color: var(--gold);
+  display: flex; align-items: center; gap: 10px;
+  margin-bottom: 1.2rem;
+}
+.hero-eyebrow::before { content: ''; width: 24px; height: 1px; background: var(--gold); }
+.hero-name {
+  font-family: var(--head);
+  font-size: clamp(2.4rem, 5.5vw, 4.2rem);
+  font-weight: 300; letter-spacing: -0.02em;
+  line-height: 1.0; color: var(--ink);
+  white-space: nowrap;
+  margin-bottom: 0.6rem;
+}
+.hero-role {
+  font-family: var(--head); font-style: italic;
+  font-size: clamp(1rem, 2vw, 1.35rem);
+  color: var(--gold-dk); font-weight: 300;
+  margin-bottom: 1.5rem;
+}
+.hero-bio {
+  font-size: clamp(13px, 1.5vw, 15px);
+  color: var(--charcoal); line-height: 1.85;
+  max-width: 520px; margin-bottom: 2rem;
+  padding-left: 1rem;
+  border-left: 1px solid var(--gold);
+}
+.hero-tags {
+  display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 2rem;
+}
+.tag {
+  font-size: 11px; font-weight: 400; letter-spacing: 0.04em;
+  padding: 4px 12px; border: 1px solid var(--border2);
+  border-radius: 20px; color: var(--charcoal);
+  background: var(--white);
+}
+.hero-cta { display: flex; gap: 12px; flex-wrap: wrap; }
+.btn {
+  font-family: var(--body); font-size: 11px; font-weight: 500;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  padding: 11px 26px; border-radius: var(--r);
+  cursor: pointer; transition: all 0.2s; text-decoration: none;
+  display: inline-flex; align-items: center; gap: 8px; border: none;
+}
+.btn-gold { background: var(--gold); color: var(--white); }
+.btn-gold:hover { background: var(--gold-dk); transform: translateY(-1px); box-shadow: var(--shadow2); }
+.btn-outline { background: transparent; color: var(--ink); border: 1px solid var(--border2); }
+.btn-outline:hover { border-color: var(--gold); color: var(--gold-dk); }
+
+/* ── Photo frame ── */
+.photo-col { display: flex; justify-content: center; align-items: flex-start; }
+.photo-wrap {
+  position: relative;
+  width: 100%; max-width: 300px;
+  aspect-ratio: 3/4;
+}
+.photo-wrap::after {
+  content: '';
+  position: absolute;
+  top: 14px; left: 14px; right: -14px; bottom: -14px;
+  border: 1px solid var(--gold);
+  border-radius: var(--r2); z-index: 0;
+  pointer-events: none;
+}
+.photo-wrap img,
+.photo-placeholder {
+  position: relative; z-index: 1;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  border-radius: var(--r2);
+  border: 1px solid var(--border);
+  display: block;
+}
+.photo-placeholder {
+  background: var(--parchment);
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  gap: 10px; color: var(--stone);
+  font-size: 13px; text-align: center; padding: 1rem;
+}
+.photo-placeholder .ph-av {
+  width: 64px; height: 64px; border-radius: 50%;
+  background: var(--warm); border: 1px solid var(--border2);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 28px; color: var(--gold);
+}
+.photo-caption {
+  font-size: 10px; color: var(--stone); margin-top: 10px;
+  letter-spacing: 0.1em; text-align: center;
+}
+
+/* ══════════════════════════════════════════
+   ABOUT
+══════════════════════════════════════════ */
+.about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(2rem, 5vw, 4rem); align-items: start; }
+.about-text p { font-size: 15px; color: var(--charcoal); line-height: 1.85; margin-bottom: 1rem; }
+.about-text p strong { color: var(--ink); font-weight: 500; }
+.about-aside {}
+.aside-card {
+  background: var(--parchment);
+  border: 1px solid var(--border);
+  border-radius: var(--r2); padding: 1.5rem;
+  margin-bottom: 1rem;
+}
+.aside-card h4 {
+  font-family: var(--head); font-size: 0.9rem; font-weight: 600;
+  letter-spacing: 0.06em; text-transform: uppercase;
+  color: var(--gold-dk); margin-bottom: 0.8rem;
+  padding-bottom: 0.6rem; border-bottom: 1px solid var(--border);
+}
+.aside-card ul { list-style: none; padding: 0; }
+.aside-card ul li {
+  font-size: 13px; color: var(--charcoal);
+  padding: 4px 0 4px 1rem; position: relative; line-height: 1.6;
+}
+.aside-card ul li::before { content: '·'; position: absolute; left: 0; color: var(--gold); }
+
+/* ══════════════════════════════════════════
+   SKILLS
+══════════════════════════════════════════ */
+#skills { background: var(--parchment); }
+.skills-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+.skill-card {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: var(--r2); padding: 1.4rem;
+  transition: box-shadow 0.2s, border-color 0.2s;
+}
+.skill-card:hover { box-shadow: var(--shadow2); border-color: var(--border2); }
+.skill-card-head {
+  font-size: 10px; font-weight: 500; letter-spacing: 0.16em;
+  text-transform: uppercase; color: var(--gold-dk);
+  margin-bottom: 1rem; padding-bottom: 0.7rem;
+  border-bottom: 1px solid var(--border);
+}
+.skill-pills { display: flex; flex-wrap: wrap; gap: 6px; }
+.skill-pill {
+  font-size: 11.5px; padding: 4px 11px;
+  background: var(--parchment); border: 1px solid var(--border);
+  border-radius: 20px; color: var(--ink2); font-weight: 300;
+}
+
+/* ══════════════════════════════════════════
+   EXPERIENCE
+══════════════════════════════════════════ */
+.timeline { padding-left: 1.5rem; border-left: 1px solid var(--border2); }
+.tl-item { position: relative; margin-bottom: 2.75rem; padding-left: 1.5rem; }
+.tl-item::before {
+  content: ''; position: absolute; left: -1.94rem; top: 8px;
+  width: 9px; height: 9px; border-radius: 50%;
+  background: var(--cream); border: 2px solid var(--gold);
+}
+.tl-item:first-child::before { background: var(--gold); }
+.tl-meta { display: flex; align-items: center; gap: 10px; margin-bottom: 4px; }
+.tl-date {
+  font-size: 11px; font-weight: 500; color: var(--gold-dk);
+  padding: 2px 9px; border: 1px solid var(--border2);
+  border-radius: 3px; background: var(--white);
+  letter-spacing: 0.04em;
+}
+.tl-now {
+  font-size: 10px; font-weight: 500; letter-spacing: 0.1em;
+  background: var(--gold); color: var(--white);
+  padding: 2px 9px; border-radius: 3px;
+}
+.tl-role {
+  font-family: var(--head); font-size: 1.15rem; font-weight: 600;
+  color: var(--ink); margin-bottom: 2px;
+}
+.tl-company {
+  font-size: 12px; font-weight: 500; color: var(--gold-dk);
+  letter-spacing: 0.04em; margin-bottom: 0.8rem;
+  text-transform: uppercase;
+}
+.tl-pts { list-style: none; }
+.tl-pts li {
+  font-size: 14px; color: var(--charcoal); line-height: 1.75;
+  padding: 3px 0 3px 1.1rem; position: relative;
+}
+.tl-pts li::before { content: '—'; position: absolute; left: 0; color: var(--gold-lt); font-size: 11px; top: 5px; }
+
+/* ══════════════════════════════════════════
+   PROJECTS
+══════════════════════════════════════════ */
+.projects-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+.proj-card {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: var(--r2); padding: 1.75rem;
+  cursor: pointer; transition: all 0.25s; position: relative;
+  overflow: hidden;
+}
+.proj-card::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0;
+  height: 2px; background: var(--gold);
+  transform: scaleX(0); transform-origin: left; transition: transform 0.25s;
+}
+.proj-card:hover { box-shadow: var(--shadow2); transform: translateY(-3px); border-color: var(--border2); }
+.proj-card:hover::before { transform: scaleX(1); }
+.proj-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1.1rem; }
+.proj-ico {
+  width: 44px; height: 44px; border-radius: var(--r);
+  background: var(--parchment); border: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: center; font-size: 20px;
+}
+.proj-status {
+  font-size: 10px; padding: 3px 9px; border-radius: 3px;
+  font-weight: 500; text-transform: uppercase; letter-spacing: 0.08em;
+}
+.s-active { background: #f0f8f0; color: #2d6a2d; border: 1px solid #b8e0b8; }
+.s-done   { background: #f0f0f8; color: #2d2d6a; border: 1px solid #b8b8e0; }
+.proj-title {
+  font-family: var(--head); font-size: 1.15rem; font-weight: 600;
+  color: var(--ink); margin-bottom: 0.5rem;
+}
+.proj-desc { font-size: 13px; color: var(--charcoal); line-height: 1.75; margin-bottom: 1rem; }
+.proj-stack { display: flex; flex-wrap: wrap; gap: 6px; }
+.stack-chip {
+  font-size: 11px; padding: 3px 9px; border-radius: 3px;
+  background: var(--parchment); border: 1px solid var(--border);
+  color: var(--charcoal); font-weight: 300;
+}
+.proj-link {
+  margin-top: 1rem; padding-top: 0.8rem;
+  border-top: 1px solid var(--border);
+  font-size: 11.5px; font-weight: 500; color: var(--gold-dk);
+  display: flex; align-items: center; gap: 6px; letter-spacing: 0.06em;
+}
+
+/* ══════════════════════════════════════════
+   ARTICLES
+══════════════════════════════════════════ */
+.articles-col { display: flex; flex-direction: column; gap: 1px; }
+.art-card {
+  background: var(--white); border: 1px solid var(--border);
+  display: grid; grid-template-columns: 1fr auto;
+  align-items: center; gap: 1.5rem;
+  padding: 1.3rem 1.6rem; cursor: pointer;
+  transition: all 0.2s; text-decoration: none; color: inherit;
+}
+.art-card:first-child { border-radius: var(--r2) var(--r2) 0 0; }
+.art-card:last-of-type { border-radius: 0 0 var(--r2) var(--r2); }
+.art-card:only-child { border-radius: var(--r2); }
+.art-card + .art-card { border-top: none; }
+.art-card:hover { background: var(--parchment); z-index: 1; position: relative; }
+.art-chip {
+  font-size: 10px; font-weight: 500; text-transform: uppercase;
+  letter-spacing: 0.1em; padding: 2px 8px; border-radius: 3px;
+  display: inline-block; margin-bottom: 5px;
+}
+.c-rf   { background: #eef4ff; color: #2b4d9b; border: 1px solid #c5d9f5; }
+.c-ew   { background: #fff4ee; color: #9b3d1a; border: 1px solid #f5c9a5; }
+.c-gnss { background: #eefff4; color: #1a6e3c; border: 1px solid #a5f5c4; }
+.c-dev  { background: #f4eeff; color: #5c1a9b; border: 1px solid #d9a5f5; }
+.art-title {
+  font-family: var(--head); font-size: 1rem; font-weight: 600;
+  color: var(--ink); margin-bottom: 3px;
+}
+.art-meta { font-size: 11.5px; color: var(--stone); }
+.art-arr { color: var(--gold); font-size: 1.1rem; transition: transform 0.2s; flex-shrink: 0; }
+.art-card:hover .art-arr { transform: translateX(4px); }
+
+/* ══════════════════════════════════════════
+   CONTACT
+══════════════════════════════════════════ */
+#contact { background: var(--ink); }
+#contact .section-title { color: var(--cream); }
+#contact .section-title em { color: var(--gold-lt); }
+#contact .eyebrow { color: var(--gold-lt); }
+#contact .eyebrow::before { background: var(--gold-lt); }
+.contact-sub {
+  font-size: 15px; color: #9a9088; line-height: 1.8;
+  max-width: 520px; margin-bottom: 2.5rem;
+}
+.contact-links { display: flex; flex-wrap: wrap; gap: 12px; }
+.c-link {
+  display: inline-flex; align-items: center; gap: 9px;
+  padding: 10px 20px; border: 1px solid rgba(255,255,255,0.15);
+  border-radius: var(--r); color: #c8c0b4;
+  text-decoration: none; font-size: 12px; font-weight: 400;
+  letter-spacing: 0.06em; transition: all 0.2s;
+}
+.c-link:hover { border-color: var(--gold); color: var(--gold-lt); }
+footer {
+  background: var(--ink2); border-top: 1px solid rgba(255,255,255,0.06);
+  text-align: center; padding: 1.25rem;
+  font-size: 11.5px; color: #6a6258; letter-spacing: 0.06em;
+}
+footer strong { color: #9a8e7e; font-weight: 400; }
+
+/* ══════════════════════════════════════════
+   DETAIL PAGE
+══════════════════════════════════════════ */
+.detail-wrap {
+  max-width: 760px; margin: 0 auto;
+  padding: 2.5rem clamp(1.25rem, 5vw, 3rem) 6rem;
+}
+.back-btn {
+  display: inline-flex; align-items: center; gap: 7px;
+  font-size: 11px; font-weight: 500; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--stone);
+  background: none; border: none; cursor: pointer;
+  font-family: var(--body); margin-bottom: 2.5rem;
+  padding: 0; transition: color 0.2s;
+}
+.back-btn:hover { color: var(--gold-dk); }
+.detail-chip { display: inline-block; margin-bottom: 1rem; }
+.detail-title {
+  font-family: var(--head); font-size: clamp(1.9rem, 4vw, 3rem);
+  font-weight: 400; color: var(--ink); letter-spacing: -0.02em;
+  line-height: 1.15; margin-bottom: 1rem;
+}
+.detail-meta {
+  display: flex; flex-wrap: wrap; gap: 1.5rem;
+  font-size: 12px; color: var(--stone); font-weight: 400;
+  padding: 1.2rem 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+  margin-bottom: 2.5rem;
+}
+.detail-body { font-size: 15px; color: var(--ink2); line-height: 1.9; }
+.detail-body h3 {
+  font-family: var(--head); font-size: 1.4rem; font-weight: 600;
+  color: var(--ink); margin: 2.5rem 0 0.75rem;
+}
+.detail-body p { margin-bottom: 1rem; color: var(--charcoal); }
+.detail-body ul { padding-left: 1.5rem; margin-bottom: 1rem; }
+.detail-body ul li { color: var(--charcoal); margin-bottom: 0.35rem; line-height: 1.75; }
+.detail-stack-row {
+  margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1px solid var(--border);
+}
+.detail-stack-row h4 {
+  font-size: 10px; text-transform: uppercase; letter-spacing: 0.14em;
+  color: var(--stone); font-weight: 500; margin-bottom: 0.8rem;
+}
+.detail-stack-pills { display: flex; flex-wrap: wrap; gap: 8px; }
+
+/* ══════════════════════════════════════════
+   ADMIN MODAL (password-protected)
+══════════════════════════════════════════ */
+.modal-bg {
+  display: none; position: fixed; inset: 0;
+  background: rgba(20,16,10,0.55); z-index: 300;
+  align-items: center; justify-content: center;
+  backdrop-filter: blur(4px); padding: 1rem;
+}
+.modal-bg.open { display: flex; }
+.modal-box {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: var(--r2); padding: 2rem 2rem 1.75rem;
+  width: 100%; max-width: 500px;
+  box-shadow: var(--shadow2); position: relative;
+}
+.modal-hd {
+  font-family: var(--head); font-size: 1.4rem; font-weight: 600;
+  color: var(--ink); margin-bottom: 1.5rem;
+}
+.modal-close {
+  position: absolute; top: 1rem; right: 1rem;
+  background: none; border: none; font-size: 1rem;
+  color: var(--stone); cursor: pointer; transition: color 0.2s;
+}
+.modal-close:hover { color: var(--ink); }
+.f-row { margin-bottom: 1rem; }
+.f-label {
+  display: block; font-size: 10px; font-weight: 500;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--stone); margin-bottom: 5px;
+}
+input[type=text], input[type=password], input[type=url],
+input[type=date], select, textarea {
+  width: 100%; background: var(--cream);
+  border: 1px solid var(--border2); border-radius: var(--r);
+  padding: 9px 12px; color: var(--ink); font-family: var(--body);
+  font-size: 13px; font-weight: 300; outline: none; transition: border-color 0.2s;
+}
+input:focus, select:focus, textarea:focus { border-color: var(--gold); }
+textarea { resize: vertical; min-height: 90px; }
+.f-grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.modal-ft { display: flex; gap: 10px; justify-content: flex-end; margin-top: 1.5rem; }
+.err-msg { color: #c0392b; font-size: 12px; margin-top: 0.5rem; display: none; }
+.err-msg.show { display: block; }
+
+/* ══════════════════════════════════════════
+   ANIMATIONS
+══════════════════════════════════════════ */
+.reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.6s ease, transform 0.6s ease; }
+.reveal.in { opacity: 1; transform: none; }
+.d1 { transition-delay: 0.07s; } .d2 { transition-delay: 0.14s; }
+.d3 { transition-delay: 0.21s; } .d4 { transition-delay: 0.28s; }
+.d5 { transition-delay: 0.35s; }
+
+/* ══════════════════════════════════════════
+   RESPONSIVE
+══════════════════════════════════════════ */
+@media (max-width: 900px) {
+  .skills-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 720px) {
+  .hero-grid { grid-template-columns: 1fr; }
+  .hero-name { white-space: normal; }
+  .photo-col { order: -1; }
+  .photo-wrap { max-width: 200px; }
+  .about-grid { grid-template-columns: 1fr; }
+  .projects-grid { grid-template-columns: 1fr; }
+  .skills-grid { grid-template-columns: 1fr 1fr; }
+  .nav-links { gap: 1.5rem; }
+}
+@media (max-width: 520px) {
+  .skills-grid { grid-template-columns: 1fr; }
+  .nav-links { gap: 1rem; }
+  .nav-links li:nth-child(n+5) { display: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav>
+  <div class="nav-wrap">
+    <ul class="nav-links">
+      <li><a onclick="navGo('hero')">Home</a></li>
+      <li><a onclick="navGo('about')">About</a></li>
+      <li><a onclick="navGo('skills')">Skills</a></li>
+      <li><a onclick="navGo('experience')">Experience</a></li>
+      <li><a onclick="navGo('projects')">Projects</a></li>
+      <li><a onclick="navGo('articles')">Articles</a></li>
+      <li><a onclick="navGo('contact')">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ════════════════════════════════
+     MAIN PAGE
+════════════════════════════════ -->
+<div id="main-page" class="page active">
+<div class="main">
+
+<!-- HERO -->
+<section id="hero">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div class="hero-left">
+        <div class="hero-eyebrow reveal">Electronics &amp; Communication Engineer</div>
+        <h1 class="hero-name reveal d1">Sundarapandiyan K</h1>
+        <p class="hero-role reveal d2">RF Systems &middot; SIGINT &middot; Pre-Sales Technical Support</p>
+        <p class="hero-bio reveal d3">
+          Bridging cutting-edge RF hardware with real-world defence and communications use cases. Experienced in EW system demonstrations, spectrum analysis, and GNU Radio-based signal workflows — based in Bangalore, India.
+        </p>
+        <div class="hero-tags reveal d3">
+          <span class="tag">GNU Radio</span>
+          <span class="tag">SIGINT / EW</span>
+          <span class="tag">Spectrum Monitoring</span>
+          <span class="tag">Direction Finding</span>
+          <span class="tag">IZT S1000</span>
+          <span class="tag">Python</span>
+          <span class="tag">Linux</span>
+        </div>
+        <div class="hero-cta reveal d4">
+          <a href="mailto:sundarbluee@gmail.com" class="btn btn-gold">Get in touch</a>
+          <a onclick="navGo('projects')" class="btn btn-outline" style="cursor:pointer">View projects</a>
+        </div>
+      </div>
+      <div class="photo-col reveal d2">
+        <div class="photo-wrap">
+          <!-- To add your photo: replace the div below with <img src="your-photo.jpg" alt="Sundarapandiyan K"> -->
+          <div class="photo-placeholder">
+            <div class="ph-av">S</div>
+            <span style="font-size:12px;color:var(--stone)">Add your photo here</span>
+          </div>
+        </div>
+        <p class="photo-caption">Sundarapandiyan K &mdash; Bangalore</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="section-rule"/>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="wrap">
+    <div class="eyebrow reveal">About me</div>
+    <h2 class="section-title reveal d1">Who I <em>am</em></h2>
+    <div class="about-grid">
+      <div class="about-text reveal d2">
+        <p>I am a Bangalore-based Electronics &amp; Communication Engineer with hands-on experience in <strong>RF and SIGINT systems</strong>. Currently at Western Systems, I support pre-sales activities including technical demonstrations, system configuration, and customer engagement for defence-grade communication products.</p>
+        <p>My work involves <strong>signal generators, spectrum analyzers, GNU Radio</strong>, and EW concepts including jamming and direction finding — skills I continuously deepen through personal projects like my Signal Suite platform.</p>
+        <p>I hold a B.E. in Electronics &amp; Communication Engineering from Loyola Institute of Technology and Science, Anna University, graduating with a CGPA of 8.25.</p>
+      </div>
+      <div class="about-aside reveal d3">
+        <div class="aside-card">
+          <h4>Education</h4>
+          <ul>
+            <li>B.E. Electronics &amp; Communication Engg.</li>
+            <li>Loyola Institute of Technology &amp; Science</li>
+            <li>Anna University &mdash; CGPA 8.25</li>
+            <li>Graduated 2023</li>
+          </ul>
+        </div>
+        <div class="aside-card">
+          <h4>Languages</h4>
+          <ul>
+            <li>English &mdash; Fluent</li>
+            <li>Tamil &mdash; Native</li>
+            <li>Kannada &mdash; Fluent</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="section-rule"/>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="wrap">
+    <div class="eyebrow reveal">Technical stack</div>
+    <h2 class="section-title reveal d1">Skills &amp; <em>tools</em></h2>
+    <div class="skills-grid">
+      <div class="skill-card reveal d1">
+        <div class="skill-card-head">RF &amp; Signal</div>
+        <div class="skill-pills">
+          <span class="skill-pill">RF Fundamentals</span>
+          <span class="skill-pill">Spectrum Monitoring</span>
+          <span class="skill-pill">Signal Analysis</span>
+          <span class="skill-pill">Interference Troubleshooting</span>
+          <span class="skill-pill">IQ Signal Processing</span>
+        </div>
+      </div>
+      <div class="skill-card reveal d2">
+        <div class="skill-card-head">SIGINT &amp; EW</div>
+        <div class="skill-pills">
+          <span class="skill-pill">SIGINT Fundamentals</span>
+          <span class="skill-pill">Direction Finding</span>
+          <span class="skill-pill">EW System Demo</span>
+          <span class="skill-pill">Jamming Concepts</span>
+          <span class="skill-pill">Spoofing Awareness</span>
+        </div>
+      </div>
+      <div class="skill-card reveal d3">
+        <div class="skill-card-head">Tools &amp; Software</div>
+        <div class="skill-pills">
+          <span class="skill-pill">GNU Radio</span>
+          <span class="skill-pill">IZT S1000</span>
+          <span class="skill-pill">Spectrum Analyzer</span>
+          <span class="skill-pill">Signal Generator</span>
+          <span class="skill-pill">Python</span>
+          <span class="skill-pill">C</span>
+          <span class="skill-pill">Linux</span>
+        </div>
+      </div>
+      <div class="skill-card reveal d4">
+        <div class="skill-card-head">Pre-Sales Support</div>
+        <div class="skill-pills">
+          <span class="skill-pill">System Demonstrations</span>
+          <span class="skill-pill">ATP Documentation</span>
+          <span class="skill-pill">Technical Compliance</span>
+          <span class="skill-pill">Customer Engagement</span>
+        </div>
+      </div>
+      <div class="skill-card reveal d2">
+        <div class="skill-card-head">GNSS &amp; Timing</div>
+        <div class="skill-pills">
+          <span class="skill-pill">GNSS Concepts</span>
+          <span class="skill-pill">GPS Signal Acquisition</span>
+          <span class="skill-pill">Rubidium Clock Sync</span>
+          <span class="skill-pill">Timing Analysis</span>
+        </div>
+      </div>
+      <div class="skill-card reveal d3">
+        <div class="skill-card-head">Hardware</div>
+        <div class="skill-pills">
+          <span class="skill-pill">PCB Diagnostics</span>
+          <span class="skill-pill">Raspberry Pi</span>
+          <span class="skill-pill">Telecom Rectifiers</span>
+          <span class="skill-pill">Power Modules</span>
+          <span class="skill-pill">HW Troubleshooting</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="section-rule"/>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="wrap">
+    <div class="eyebrow reveal">Career journey</div>
+    <h2 class="section-title reveal d1">Experience</h2>
+    <div class="timeline">
+      <div class="tl-item reveal d2">
+        <div class="tl-meta"><span class="tl-date">Apr 2025</span><span class="tl-now">Present</span></div>
+        <div class="tl-role">Engineer, Sales Support</div>
+        <div class="tl-company">Western Systems &mdash; Bangalore</div>
+        <ul class="tl-pts">
+          <li>Pre-sales technical support for RF and communication systems — requirements analysis, system configuration, and compliance documentation.</li>
+          <li>Delivered EW system demonstrations involving DF systems, signal analysis software, and jamming/spoofing scenarios for defence customers.</li>
+          <li>Developed RF signal generation and playback workflows using GNU Radio and IZT S1000 signal generators.</li>
+          <li>Engaged with defence customers during technical discussions, bridging requirements with product capabilities.</li>
+          <li>Building Signal Suite — a Python + GNU Radio platform for RF spectrum visualisation and field support.</li>
+        </ul>
+      </div>
+      <div class="tl-item reveal d3">
+        <div class="tl-meta"><span class="tl-date">Feb 2024 – Mar 2025</span></div>
+        <div class="tl-role">NAPS Trainee</div>
+        <div class="tl-company">CTDI &mdash; Bangalore</div>
+        <ul class="tl-pts">
+          <li>Troubleshooting, testing, and maintenance of telecom rectifier systems and power modules.</li>
+          <li>PCB-level diagnostics, hardware inspection, and telecom system validation with technical report writing.</li>
+        </ul>
+      </div>
+      <div class="tl-item reveal d4">
+        <div class="tl-meta"><span class="tl-date">2019 – 2023</span></div>
+        <div class="tl-role">B.E. — Electronics &amp; Communication Engineering</div>
+        <div class="tl-company">Loyola Institute of Technology &amp; Science &nbsp;|&nbsp; Anna University &nbsp;&middot;&nbsp; CGPA 8.25</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="section-rule"/>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="wrap">
+    <div class="eyebrow reveal">What I've built</div>
+    <h2 class="section-title reveal d1">Projects</h2>
+    <div class="projects-grid" id="proj-grid">
+      <div class="proj-card reveal d2" onclick="openDetail('project',0)">
+        <div class="proj-top">
+          <div class="proj-ico">📡</div>
+          <span class="proj-status s-active">Active</span>
+        </div>
+        <div class="proj-title">Signal Suite — RF Analysis Platform</div>
+        <p class="proj-desc">A Python + GNU Radio signal analysis and visualisation tool for RF spectrum exploration, IQ data playback, and pre-sales demo workflows.</p>
+        <div class="proj-stack">
+          <span class="stack-chip">Python</span><span class="stack-chip">GNU Radio</span><span class="stack-chip">Signal Processing</span>
+        </div>
+        <div class="proj-link">Read more &rarr;</div>
+      </div>
+      <div class="proj-card reveal d3" onclick="openDetail('project',1)">
+        <div class="proj-top">
+          <div class="proj-ico">🛰</div>
+          <span class="proj-status s-done">Completed</span>
+        </div>
+        <div class="proj-title">GPS &amp; Rubidium Clock Synchronisation</div>
+        <p class="proj-desc">GPS module interfaced with Raspberry Pi for signal acquisition and timing synchronisation study, comparing GPS vs. Rubidium clock accuracy.</p>
+        <div class="proj-stack">
+          <span class="stack-chip">Raspberry Pi</span><span class="stack-chip">GPS Module</span><span class="stack-chip">GNSS</span><span class="stack-chip">Timing</span>
+        </div>
+        <div class="proj-link">Read more &rarr;</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="section-rule"/>
+
+<!-- ARTICLES -->
+<section id="articles">
+  <div class="wrap">
+    <div class="eyebrow reveal">Writing</div>
+    <h2 class="section-title reveal d1">Articles</h2>
+    <div class="articles-col" id="art-list">
+      <div class="art-card reveal d2" onclick="openDetail('article',0)">
+        <div>
+          <span class="art-chip c-rf">RF</span>
+          <div class="art-title">GNU Radio for Beginners: Setting up your first RF workflow</div>
+          <div class="art-meta">Draft &middot; Jun 2025 &middot; 5 min read</div>
+        </div>
+        <div class="art-arr">&#8594;</div>
+      </div>
+      <div class="art-card reveal d3" onclick="openDetail('article',1)">
+        <div>
+          <span class="art-chip c-ew">EW</span>
+          <div class="art-title">Understanding Direction Finding: From theory to demo</div>
+          <div class="art-meta">Draft &middot; Jul 2025 &middot; 7 min read</div>
+        </div>
+        <div class="art-arr">&#8594;</div>
+      </div>
+      <div class="art-card reveal d4" onclick="openDetail('article',2)">
+        <div>
+          <span class="art-chip c-gnss">GNSS</span>
+          <div class="art-title">GPS Timing vs. Rubidium Clocks: What I learnt from my Raspberry Pi project</div>
+          <div class="art-meta">Draft &middot; Aug 2025 &middot; 4 min read</div>
+        </div>
+        <div class="art-arr">&#8594;</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="section-rule"/>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="wrap">
+    <div class="eyebrow reveal">Let's connect</div>
+    <h2 class="section-title reveal d1">Open to new <em>opportunities</em></h2>
+    <p class="contact-sub reveal d2">Interested in SIGINT, RF pre-sales, application engineering, and test &amp; measurement roles. Available for defence and commercial projects.</p>
+    <div class="contact-links reveal d3">
+      <a href="mailto:sundarbluee@gmail.com" class="c-link">&#9993; sundarbluee@gmail.com</a>
+      <a href="tel:+919092006915" class="c-link">&#128222; +91 90920 06915</a>
+      <a href="https://linkedin.com/in/sundarapandiyan-k-59a899" target="_blank" class="c-link">in LinkedIn</a>
+    </div>
+  </div>
+</section>
+
+<footer>Crafted by <strong>Sundarapandiyan K</strong> &nbsp;&middot;&nbsp; Bangalore, India &nbsp;&middot;&nbsp; 2025</footer>
+
+</div><!-- /main -->
+</div><!-- /main-page -->
+
+
+<!-- ════════════════════════════════
+     DETAIL PAGE
+════════════════════════════════ -->
+<div id="detail-page" class="page">
+  <div class="main">
+    <div class="detail-wrap">
+      <button class="back-btn" onclick="goBack()">&#8592; Back</button>
+      <div id="detail-body"></div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ════════════════════════════════
+     ADMIN MODAL (owner only)
+════════════════════════════════ -->
+<div class="modal-bg" id="modal-bg" onclick="outsideClose(event)">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal()">&#10005;</button>
+    <div id="modal-inner"></div>
+  </div>
+</div>
+
+<!-- Hidden admin trigger: type "admin" anywhere on page -->
+<div id="admin-hint" style="display:none">
+  <div style="position:fixed;bottom:1.5rem;right:1.5rem;z-index:100">
+    <button class="btn btn-gold" onclick="openAdminGate()">+ Add content</button>
+  </div>
+</div>
+
+
+<script>
+/* ══════ DATA ══════ */
+const PROJECTS = [
+  {
+    icon:'📡', status:'s-active', statusLabel:'Active',
+    title:'Signal Suite — RF Analysis Platform',
+    year:'2025',
+    stack:['Python','GNU Radio','Signal Processing','Spectrum Visualisation'],
+    summary:'A Python + GNU Radio signal analysis and visualisation tool for RF spectrum exploration, IQ data playback, and pre-sales demo workflows.',
+    body:`<h3>Overview</h3>
+<p>Signal Suite is a self-initiated software project building a reusable, field-ready RF signal analysis platform. The core motivation is to reduce manual overhead in pre-sales demo environments — engineers typically spend significant time reconfiguring signal generators and spectrum analysers for each customer scenario.</p>
+<h3>What it does</h3>
+<ul>
+<li>Real-time RF spectrum visualisation using GNU Radio flowgraphs</li>
+<li>IQ data capture, storage, and playback for repeatable demo scenarios</li>
+<li>Signal classification utilities for identifying modulation types</li>
+<li>Configurable frequency and bandwidth scanning presets</li>
+<li>Lightweight Python GUI for operator use during demonstrations</li>
+</ul>
+<h3>Technical approach</h3>
+<p>Built using GNU Radio Companion for the DSP backend, with Python wrapping flowgraphs to expose a cleaner API for the GUI layer. Signal capture is handled via SDR-compatible interfaces, making the tool hardware-agnostic across common SDR platforms.</p>
+<h3>Current status</h3>
+<p>Active development. Core spectrum visualisation and IQ playback modules are functional. The next milestone is adding automated anomaly detection for interference identification, directly applicable to SIGINT pre-sales workflows.</p>`
+  },
+  {
+    icon:'🛰', status:'s-done', statusLabel:'Completed',
+    title:'GPS Signal Reception & Rubidium Clock Synchronisation',
+    year:'2023',
+    stack:['Raspberry Pi','GPS Module','GNSS','Python','Timing Analysis'],
+    summary:'Academic project exploring timing accuracy by comparing GPS-derived timing references against Rubidium oscillator concepts using a Raspberry Pi.',
+    body:`<h3>Project background</h3>
+<p>This project was undertaken as part of the B.E. programme to explore precision timing systems — foundational to GNSS, spectrum monitoring, and synchronised communications. The goal was to practically compare GPS-derived synchronisation against Rubidium atomic clock standards.</p>
+<h3>Implementation</h3>
+<ul>
+<li>Interfaced a u-blox GPS module with Raspberry Pi via UART for NMEA sentence parsing and 1PPS signal extraction</li>
+<li>Python scripts to log and analyse GPS timing data including UTC time, fix quality, and satellite count</li>
+<li>Studied Rubidium oscillator characteristics and compared theoretical accuracy (±5×10⁻¹¹ frequency stability) against GPS timing (±100ns typical)</li>
+<li>Documented synchronisation drift patterns and holdover behaviour concepts</li>
+</ul>
+<h3>Key findings</h3>
+<p>GPS provides excellent absolute timing accuracy when locked to multiple satellites but depends on external signal availability. Rubidium clocks offer superior short-term stability and are not susceptible to jamming or outages — making them preferred in defence environments where GNSS denial is a risk.</p>`
+  }
+];
+
+const ARTICLES = [
+  {
+    chip:'c-rf', chipLabel:'RF',
+    title:'GNU Radio for Beginners: Setting up your first RF workflow',
+    date:'Jun 2025', read:'5 min read', status:'Draft',
+    body:`<h3>Introduction</h3>
+<p>GNU Radio is one of the most powerful open-source signal processing toolkits available to RF engineers and hobbyists. If you have been wanting to start with software-defined radio but felt overwhelmed by options, this guide walks you through setting up your first signal processing workflow using GNU Radio Companion — the graphical front-end.</p>
+<h3>What you will need</h3>
+<ul>
+<li>A Linux machine (Ubuntu 22.04 recommended) or Windows with WSL2</li>
+<li>GNU Radio 3.10+ installed via <code>apt install gnuradio</code></li>
+<li>An SDR receiver (RTL-SDR is the cheapest entry point)</li>
+<li>The gr-osmosdr block for SDR source connectivity</li>
+</ul>
+<h3>Your first flowgraph</h3>
+<p>A GNU Radio flowgraph is a directed graph where data flows from a source block through processing blocks to a sink. Start with the simplest chain: <strong>SDR Source → Throttle → FFT Sink</strong>. This gives you a real-time spectrum display within minutes of installation.</p>
+<h3>Tips from field experience</h3>
+<ul>
+<li>Always set your sample rate explicitly — mismatches cause silent data corruption</li>
+<li>Use the Variable block to parameterise your centre frequency so you can tune without recompiling</li>
+<li>Use QT GUI Frequency Sink; WX GUI FFT Sink has been deprecated</li>
+</ul>`
+  },
+  {
+    chip:'c-ew', chipLabel:'EW',
+    title:'Understanding Direction Finding: From theory to demo',
+    date:'Jul 2025', read:'7 min read', status:'Draft',
+    body:`<h3>What is Direction Finding?</h3>
+<p>Direction Finding (DF) is the process of determining the geographic origin of a radio frequency emission. In Electronic Warfare, it is a critical intelligence-gathering capability — knowing where a signal originates can be as valuable as knowing its content.</p>
+<h3>Core techniques</h3>
+<ul>
+<li><strong>Amplitude Comparison:</strong> Multiple directional antennas; angle estimated by comparing signal strength. Simple but limited in accuracy.</li>
+<li><strong>Phase Interferometry:</strong> Measures phase difference at spatially separated antenna pairs. More accurate and widely used in military DF systems.</li>
+<li><strong>MUSIC / ESPRIT:</strong> Advanced DSP algorithms operating on antenna array data — capable of resolving multiple simultaneous emitters.</li>
+<li><strong>TDOA:</strong> Uses time-of-arrival differences across geographically separated receivers to triangulate sources. Requires tight time synchronisation.</li>
+</ul>
+<h3>What a DF demonstration involves</h3>
+<p>From participation in DF system demonstrations at Western Systems, evaluations typically cover: antenna array calibration, system sensitivity, angular accuracy across frequency bands, response time from detection to bearing output, and integration with C2 platforms.</p>`
+  },
+  {
+    chip:'c-gnss', chipLabel:'GNSS',
+    title:'GPS Timing vs. Rubidium Clocks: What I learnt from my Raspberry Pi project',
+    date:'Aug 2025', read:'4 min read', status:'Draft',
+    body:`<h3>Why timing matters in RF systems</h3>
+<p>Precision timing is invisible when it works and catastrophic when it fails. In RF and communications systems — SIGINT, spectrum monitoring, synchronised networks — the quality of your time reference directly determines the quality of every downstream measurement.</p>
+<h3>The experiment</h3>
+<p>For my final-year project, I built a platform on a Raspberry Pi to explore this empirically. Using a u-blox NEO-6M GPS module over UART, I extracted 1PPS signals and NMEA timing data, then compared GPS-derived timing characteristics against Rubidium oscillator specifications.</p>
+<h3>Key findings</h3>
+<ul>
+<li><strong>GPS accuracy:</strong> When locked to 4+ satellites, GPS provides absolute time accuracy of ±100 nanoseconds</li>
+<li><strong>GPS weakness:</strong> Entirely dependent on signal reception — fails under jamming or signal denial</li>
+<li><strong>Rubidium strength:</strong> Extraordinary short-term frequency stability (±5×10⁻¹¹) and continues at full accuracy during GPS outages (holdover)</li>
+<li><strong>Practical answer:</strong> Mission-critical systems use GPS-disciplined Rubidium oscillators — GPS corrects long-term drift; Rubidium provides stability during outages</li>
+</ul>`
+  }
+];
+
+/* ══════ ADMIN PASSWORD ══════ */
+const ADMIN_PASS = 'sundar2025'; // Change this to your own password
+let adminUnlocked = false;
+let modalMode = 'project';
+
+/* ══════ SECRET ADMIN TRIGGER ══════ */
+let keyBuffer = '';
+document.addEventListener('keydown', e => {
+  keyBuffer += e.key;
+  if (keyBuffer.length > 10) keyBuffer = keyBuffer.slice(-10);
+  if (keyBuffer.toLowerCase().includes('admin')) {
+    document.getElementById('admin-hint').style.display = 'block';
+  }
+});
+
+function openAdminGate() {
+  if (adminUnlocked) { showAddForm(); return; }
+  document.getElementById('modal-inner').innerHTML = `
+    <div class="modal-hd">Admin Access</div>
+    <div class="f-row">
+      <label class="f-label">Password</label>
+      <input type="password" id="pw-in" placeholder="Enter password" onkeydown="if(event.key==='Enter')checkPW()"/>
+      <p class="err-msg" id="pw-err">Incorrect password. Try again.</p>
+    </div>
+    <div class="modal-ft">
+      <button class="btn btn-outline" onclick="closeModal()">Cancel</button>
+      <button class="btn btn-gold" onclick="checkPW()">Unlock</button>
+    </div>
+  `;
+  document.getElementById('modal-bg').classList.add('open');
+}
+
+function checkPW() {
+  const val = document.getElementById('pw-in').value;
+  if (val === ADMIN_PASS) {
+    adminUnlocked = true;
+    closeModal();
+    showAddForm();
+  } else {
+    document.getElementById('pw-err').classList.add('show');
+  }
+}
+
+function showAddForm() {
+  document.getElementById('modal-inner').innerHTML = `
+    <div class="modal-hd">Add Content</div>
+    <div class="f-row">
+      <label class="f-label">Type</label>
+      <select id="add-type" onchange="switchForm()">
+        <option value="project">Project</option>
+        <option value="article">Article</option>
+      </select>
+    </div>
+    <div id="add-form-body"></div>
+  `;
+  document.getElementById('modal-bg').classList.add('open');
+  switchForm();
+}
+
+function switchForm() {
+  const type = document.getElementById('add-type').value;
+  const el = document.getElementById('add-form-body');
+  if (type === 'project') {
+    el.innerHTML = `
+      <div class="f-row"><label class="f-label">Title</label><input type="text" id="f-title" placeholder="Project name"/></div>
+      <div class="f-row"><label class="f-label">Summary (card text)</label><textarea id="f-summary" placeholder="One or two sentences…"></textarea></div>
+      <div class="f-row"><label class="f-label">Full description (HTML allowed)</label><textarea id="f-body" style="min-height:110px" placeholder="<h3>Overview</h3><p>…</p>"></textarea></div>
+      <div class="f-row"><label class="f-label">Tech stack (comma separated)</label><input type="text" id="f-stack" placeholder="Python, GNU Radio, Linux"/></div>
+      <div class="f-grid2">
+        <div class="f-row"><label class="f-label">Status</label>
+          <select id="f-status"><option value="s-active|Active">Active</option><option value="s-done|Completed">Completed</option></select>
+        </div>
+        <div class="f-row"><label class="f-label">Icon (emoji)</label><input type="text" id="f-icon" placeholder="📡" maxlength="2"/></div>
+      </div>
+      <div class="modal-ft">
+        <button class="btn btn-outline" onclick="closeModal()">Cancel</button>
+        <button class="btn btn-gold" onclick="saveNew()">Save project</button>
+      </div>`;
+  } else {
+    el.innerHTML = `
+      <div class="f-row"><label class="f-label">Title</label><input type="text" id="f-title" placeholder="Article title"/></div>
+      <div class="f-grid2">
+        <div class="f-row"><label class="f-label">Category</label>
+          <select id="f-chip">
+            <option value="c-rf|RF">RF</option>
+            <option value="c-ew|EW">EW</option>
+            <option value="c-gnss|GNSS">GNSS</option>
+            <option value="c-dev|Dev">Dev</option>
+          </select>
+        </div>
+        <div class="f-row"><label class="f-label">Read time</label><input type="text" id="f-read" placeholder="5 min read"/></div>
+      </div>
+      <div class="f-row"><label class="f-label">Full content (HTML allowed)</label><textarea id="f-body" style="min-height:110px" placeholder="<h3>Introduction</h3><p>…</p>"></textarea></div>
+      <div class="modal-ft">
+        <button class="btn btn-outline" onclick="closeModal()">Cancel</button>
+        <button class="btn btn-gold" onclick="saveNew()">Save article</button>
+      </div>`;
+  }
+}
+
+function saveNew() {
+  const type = document.getElementById('add-type').value;
+  const title = (document.getElementById('f-title')||{}).value.trim();
+  if (!title) return;
+  const body = (document.getElementById('f-body')||{}).value || '<p>Coming soon.</p>';
+
+  if (type === 'project') {
+    const summary = (document.getElementById('f-summary')||{}).value.trim();
+    const stackRaw = (document.getElementById('f-stack')||{}).value;
+    const stack = stackRaw.split(',').map(s=>s.trim()).filter(Boolean);
+    const sv = ((document.getElementById('f-status')||{}).value||'s-done|Completed').split('|');
+    const icon = (document.getElementById('f-icon')||{}).value.trim() || '🔧';
+    const idx = PROJECTS.length;
+    PROJECTS.push({ icon, status:sv[0], statusLabel:sv[1], title, year:new Date().getFullYear()+'', stack, summary, body });
+    const card = document.createElement('div');
+    card.className = 'proj-card reveal in';
+    card.onclick = () => openDetail('project', idx);
+    card.innerHTML = `
+      <div class="proj-top"><div class="proj-ico">${icon}</div><span class="proj-status ${sv[0]}">${sv[1]}</span></div>
+      <div class="proj-title">${title}</div>
+      <p class="proj-desc">${summary}</p>
+      <div class="proj-stack">${stack.map(s=>`<span class="stack-chip">${s}</span>`).join('')}</div>
+      <div class="proj-link">Read more &rarr;</div>`;
+    document.getElementById('proj-grid').appendChild(card);
+  } else {
+    const cv = ((document.getElementById('f-chip')||{}).value||'c-rf|RF').split('|');
+    const read = (document.getElementById('f-read')||{}).value.trim() || '';
+    const date = new Date().toLocaleDateString('en-GB',{month:'short',year:'numeric'});
+    const idx = ARTICLES.length;
+    ARTICLES.push({ chip:cv[0], chipLabel:cv[1], title, date, read, status:'Published', body });
+    const card = document.createElement('div');
+    card.className = 'art-card reveal in';
+    card.onclick = () => openDetail('article', idx);
+    card.innerHTML = `
+      <div>
+        <span class="art-chip ${cv[0]}">${cv[1]}</span>
+        <div class="art-title">${title}</div>
+        <div class="art-meta">${[date, read].filter(Boolean).join(' · ')}</div>
+      </div>
+      <div class="art-arr">&#8594;</div>`;
+    document.getElementById('art-list').appendChild(card);
+  }
+  closeModal();
+}
+
+/* ══════ NAV SCROLL (main page only) ══════ */
+function navGo(id) {
+  if (!document.getElementById('main-page').classList.contains('active')) {
+    goBack();
+    setTimeout(() => smoothScroll(id), 120);
+  } else {
+    smoothScroll(id);
+  }
+}
+function smoothScroll(id) {
+  const el = document.getElementById(id);
+  if (el) el.scrollIntoView({ behavior:'smooth', block:'start' });
+}
+
+/* ══════ DETAIL PAGE ══════ */
+function openDetail(type, idx) {
+  const d = type === 'project' ? PROJECTS[idx] : ARTICLES[idx];
+  let html = '';
+  if (type === 'project') {
+    html = `
+      <span class="detail-chip proj-status ${d.status}">${d.statusLabel}</span>
+      <h1 class="detail-title">${d.title}</h1>
+      <div class="detail-meta"><span>&#128197; ${d.year}</span><span>&#128295; ${d.stack.slice(0,3).join(', ')}</span></div>
+      <div class="detail-body">${d.body}</div>
+      <div class="detail-stack-row">
+        <h4>Tech stack</h4>
+        <div class="detail-stack-pills">${d.stack.map(s=>`<span class="skill-pill" style="font-size:13px;padding:5px 13px">${s}</span>`).join('')}</div>
+      </div>`;
+  } else {
+    html = `
+      <span class="detail-chip art-chip ${d.chip}">${d.chipLabel}</span>
+      <h1 class="detail-title">${d.title}</h1>
+      <div class="detail-meta"><span>&#128197; ${d.date}</span><span>&#9201; ${d.read}</span><span>&#128221; ${d.status}</span></div>
+      <div class="detail-body">${d.body}</div>`;
+  }
+  document.getElementById('detail-body').innerHTML = html;
+  document.getElementById('main-page').classList.remove('active');
+  document.getElementById('detail-page').classList.add('active');
+  window.scrollTo({top:0, behavior:'instant'});
+}
+
+function goBack() {
+  document.getElementById('detail-page').classList.remove('active');
+  document.getElementById('main-page').classList.add('active');
+  window.scrollTo({top:0, behavior:'instant'});
+}
+
+/* ══════ MODAL ══════ */
+function closeModal() { document.getElementById('modal-bg').classList.remove('open'); }
+function outsideClose(e) { if(e.target===document.getElementById('modal-bg')) closeModal(); }
+
+/* ══════ SCROLL REVEAL ══════ */
+const revealObs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
+}, { threshold: 0.08 });
+document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
+</script>
+</body>
+</html>
